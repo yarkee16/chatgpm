@@ -1,0 +1,9 @@
+{
+  "firebase": "chatgpm",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
