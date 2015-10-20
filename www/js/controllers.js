@@ -1,6 +1,6 @@
 angular.module('chatgpm.controllers', [])
 
-.controller('LoginCtrl', function ($scope, $ionicModal, $state, $firebaseAuth, $ionicLoading, $rootScope) {
+.controller('LoginCtrl', function ($scope, $ionicModal, $state, $firebaseAuth, $ionicLoading, $rootScope, $ionicPopup) {
     //console.log('Login Controller Initialized');
 
     var ref = new Firebase($scope.firebaseUrl);
@@ -16,7 +16,7 @@ angular.module('chatgpm.controllers', [])
         console.log("Create User Function called");
         if (user && user.email && user.password && user.displayname) {
             $ionicLoading.show({
-                template: 'Signing Up...'
+                template: 'Creando cuenta...'
             });
 
             auth.$createUser({
@@ -24,6 +24,10 @@ angular.module('chatgpm.controllers', [])
                 password: user.password
             }).then(function (userData) {
                 alert("User created successfully!");
+                var alertPopup = $ionicPopup.alert({
+                  title: 'Operacion exitosa!',
+                  template: 'Usuario creado exitosamente'
+                });
                 ref.child("users").child(userData.uid).set({
                     email: user.email,
                     displayName: user.displayname
@@ -35,14 +39,16 @@ angular.module('chatgpm.controllers', [])
                 $ionicLoading.hide();
             });
         } else
-            alert("Please fill all details");
+        var alertPopup = $ionicPopup.alert({
+          template: 'Rellene todos los campos'
+        });
     }
 
     $scope.signIn = function (user) {
 
         if (user && user.email && user.pwdForLogin) {
             $ionicLoading.show({
-                template: 'Signing In...'
+                template: 'Iniciando...'
             });
             auth.$authWithPassword({
                 email: user.email,
@@ -59,11 +65,16 @@ angular.module('chatgpm.controllers', [])
                 $ionicLoading.hide();
                 $state.go('tab.rooms');
             }).catch(function (error) {
-                alert("Authentication failed:" + error.message);
+                  var alertPopup = $ionicPopup.alert({
+                    title: 'Autenticacion fallida!',
+                    template: 'Error de Email y contraseña'
+                  });
                 $ionicLoading.hide();
             });
         } else
-            alert("Please enter email and password both");
+        var alertPopup = $ionicPopup.alert({
+          template: 'Debe ingresar Email y contraseña'
+        });
     }
 })
 

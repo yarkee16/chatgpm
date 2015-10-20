@@ -1,9 +1,16 @@
-<ion-view view-title="Account">
+<ion-view view-title="Mi cuenta">
   <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+    <div style="text-align:center;">
+      <img style="margin:10px;border-radius:60%;width:60%;height:60%" src="img/perfil.png" alt="imagen de perfil" />
+    </div>
+    <div class="item" style="text-align:center">
+      <i class="ion-person"></i> {{displayName.displayName}}
+      <p>
+        <i class="ion-at"></i> {{displayName.email}}
+      </p>
+    </div>
+    <button  ng-click="logout()" class="button button-assertive button-full">
+      Cerrar secion
+    </button>
   </ion-content>
 </ion-view>

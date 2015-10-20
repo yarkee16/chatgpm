@@ -11,7 +11,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('chatgpm', ['ionic', 'firebase', 'angularMoment', 'chatgpm.controllers', 'chatgpm.services'])
+angular.module('chatgpm', ['ionic','ionic.service.core', 'firebase', 'angularMoment', 'chatgpm.controllers', 'chatgpm.services'])
 
 .run(function($ionicPlatform, $rootScope, $location, Auth, $ionicLoading) {
   $ionicPlatform.ready(function() {
@@ -123,6 +123,15 @@ $stateProvider
     }
 })
 
+.state('tab.account', {
+    url: '/account',
+    views: {
+        'tab-account': {
+            templateUrl: 'templates/tab-account.html',
+            controller: ''
+        }
+    }
+})
 // if none of the above states are matched, use this as the fallback
 $urlRouterProvider.otherwise('/login');
 
