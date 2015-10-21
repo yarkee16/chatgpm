@@ -45,7 +45,7 @@ return {
         console.log("selecting the room with id: " + roomId);
         selectedRoomId = roomId;
         if (!isNaN(roomId)) {
-            chats = $firebase(ref.child('rooms').child(selectedRoomId).child('chats')).$asArray();
+            chats = $firebase(ref.child('rooms').child(selectedRoomId).child('chats').limitToLast(15)).$asArray();
         }
     },
     send: function (from, message) {

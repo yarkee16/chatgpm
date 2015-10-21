@@ -110,6 +110,7 @@ angular.module('chatgpm.controllers', [])
     //console.log("Rooms Controller initialized");
     $scope.rooms = Rooms.all();
 
+
     $scope.openChatRoom = function (roomId) {
         $state.go('tab.chat', {
             roomId: roomId
